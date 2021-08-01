@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 //Serializable converte a classe em  bits para que os objetos sejam gravados em arquivos, trafegar em rede entre outras coisas mais.
 public class Categoria implements Serializable {
@@ -22,7 +24,7 @@ public class Categoria implements Serializable {
 	private Integer id;
 	private String nome;
 
-	
+	@JsonManagedReference// Faz isso no lugar que quer venha os objetos associados 
 	@ManyToMany(mappedBy="categorias")//Um outro nmapeamento utilizando o que já foi feito na categoria
 	private List<Produto> produtos = new ArrayList<>();
 
