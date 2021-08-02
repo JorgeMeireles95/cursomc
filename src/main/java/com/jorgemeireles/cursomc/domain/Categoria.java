@@ -1,10 +1,8 @@
 package com.jorgemeireles.cursomc.domain;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-//Faz o mapeamento objeto-relacional, JPA converte  obejto para tabelas no banco e vice-versa.
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,22 +12,19 @@ import javax.persistence.ManyToMany;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-//Serializable converte a classe em  bits para que os objetos sejam gravados em arquivos, trafegar em rede entre outras coisas mais.
 public class Categoria implements Serializable {
-
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY) // defini a estratégia de geração automáticas dos ID's
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
-
-	@JsonManagedReference// Faz isso no lugar que quer venha os objetos associados 
-	@ManyToMany(mappedBy="categorias")//Um outro nmapeamento utilizando o que já foi feito na categoria
+	
+	@JsonManagedReference
+	@ManyToMany(mappedBy="categorias")
 	private List<Produto> produtos = new ArrayList<>();
-
+	
 	public Categoria() {
-
 	}
 
 	public Categoria(Integer id, String nome) {
@@ -86,5 +81,4 @@ public class Categoria implements Serializable {
 			return false;
 		return true;
 	}
-
 }
